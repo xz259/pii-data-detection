@@ -11,6 +11,7 @@ from seqeval.metrics import recall_score, precision_score, f1_score
 
 class CFG:
     max_length = 1024
+    model_path = '/microsoft/deberta-v3-base'  
 
 df = pd.read_json('/data/train.json')
 
@@ -32,7 +33,7 @@ def create_dataset(df):
 train_ds = create_dataset(train_df)
 valid_ds = create_dataset(valid_df)
 
-tokenizer = AutoTokenizer.from_pretrained('deberta-v3-base')
+tokenizer = AutoTokenizer.from_pretrained('CFG.model_path')
 
 def align_labels_with_tokens(labels, word_ids):
     new_labels = []
@@ -67,7 +68,10 @@ def compute_metrics(p):
     return {'recall': recall, 'precision': precision, 'f1': f1}
 
 model = AutoModelForTokenClassification.from_pretrained(
-    'deberta-v3-base', num_labels=len(label_list), id2label=id2label, label2id=label2id, ignore_mismatched_sizes=True)
+    CFG.model_path, num_labels=len(label_list), id2label=id2label, label2id=label2id, ignore_mismatched_sizes=True)
+
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+model.to(device)
 
 training_args = TrainingArguments(
     fp16=True, 
