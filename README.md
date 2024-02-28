@@ -9,7 +9,7 @@ This repository contains the source code and resources for an NER project aimed 
 
 1. **Clone the Repository**:
    ```sh
-   git clone https://github.com/<your-username>/pii-data-detection.git
+   git clone https://github.com/q-xZzz/pii-data-detection.git
 
 2. **Install Dependencies**:
    ```sh
