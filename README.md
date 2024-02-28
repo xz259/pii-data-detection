@@ -27,4 +27,5 @@ To get the project up and running, follow these steps:
 - **(optional)Exploratory Data Analysis**: Open `EDA.ipynb` with Jupyter Notebook or JupyterLab to explore the training dataset.
 - **Model Training**:
   - Run `python model_training.py`.
-- **Inference**: Run `python inference.py` to load the model checkpoints and use it to make predictions on the test set.
+- **Inference**:
+  - Run `python inference.py` to load the model checkpoints and use it to make predictions on the test set.
